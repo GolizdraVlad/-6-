@@ -1,0 +1,141 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+int _task1(int m, int n,int**arr)
+{
+	int count = 0;
+	for (int i = 0; i < m; i++) {
+		bool t = true;
+		for (int j = 0; j < n - 1; j++) {
+			if (arr[i][j] <= arr[i][j + 1])
+				t = false;
+		}
+		if (t == true)
+			count++;
+		
+	}
+	return count;
+}
+int _task2(int m, int n, int** arr)
+{
+	int count = 0;
+	for (int i = 0; i < m; i++) 
+	{
+		bool t = true;
+		for (int j = 0; j < n - 1; j++) {
+			if (arr[i][j] >= arr[i][j + 1])
+				t = false;
+		}
+		if (t == true)
+			count++;
+	}
+	return count;
+}
+int _task3(int m, int n, int** arr)
+{
+	int count = 0;
+	for (int i = 0; i < m; i++)
+	{
+		bool t = true;
+		for (int j = 0; j < n - 1; j++) {
+			if (arr[i][j] = arr[i][j + 1])
+				t = false;
+		}
+		if (t == true)
+			count++;
+	}
+	return count;
+}
+int _task4(int m, int n, int** arr)
+{
+	int a1, a2, a3, sum, s, otv;
+	{
+		int f1 = _task1(n, m, arr);
+		a1 = f1;
+		int f2 = _task2(n, m, arr);
+		a2 = f2;
+		int f3 = _task3(n, m, arr);
+		a3 = f3;
+		sum = a1 + a2 + a3;
+		s = n;
+		otv = s - sum;
+	}
+	return otv;
+}
+int main()
+{
+	while (1)
+    { 
+		setlocale(LC_ALL, "Russian");
+		int z = 0;
+		cout << "выберите действие 1 -вычисление, 0 - выход" << endl;
+		cin >> z;
+		if (z == 0)
+		{
+			break;
+		}
+	 srand(time(0));
+	 int m, n;
+	 n = 3 + (rand() % 4);
+	 m = n;
+	 int ** arr = new int*[m]; // создание динамического двумерного массива на m строк
+	 for (int i(0); i < m; i++) // создание каждого одномерного массива в динамическом двумерном массиве, или иначе - создание столбцов размерность n
+		arr[i] = new int[n];
+
+
+	//заполнение массива 
+	 for (int i = 0; i < m; i++)
+	 {
+		for (int j = 0; j < n; j++) {
+			arr[i][j] = rand() % 10;
+		}
+	 }
+	//вывод чисел
+	 cout << "массив: " << endl;
+	 for (int i = 0; i < m; i++)
+	 {
+		for (int j = 0; j < n; j++) 
+		{
+			cout << arr[i][j] << " ";
+		}
+		cout << endl;
+	 }
+	 int o;
+	 cout << "выбирите действие:определить количество строк" << endl;
+	 cout << "1) упорядоченных по возрастанию" << endl;
+	 cout << "2) упорядоченных по убыванию" << endl;
+	 cout << "3) состоящих из равных элементов" << endl;
+	 cout << "4) неупорядоченных" << endl;
+	 cin >> o;
+	 if (o == 1)
+	 {
+		 int f1 = _task1(m, n, arr);
+
+		 cout << "ответ:" << endl;
+		 cout << f1 << endl;
+	 }
+	 if (o == 2)
+	 {
+		 int f2 = _task2(m, n, arr);
+
+		 cout << "ответ:" << endl;
+		 cout << f2 << endl;
+	 }
+	 if (o == 3)
+	 {
+		 int f3 = _task3(m, n, arr);
+
+		 cout << "ответ:" << endl;
+		 cout << f3 << endl;
+	 }
+	 if (o == 4)
+	 {
+		 int f4 = _task4(m, n, arr);
+
+		 cout << "ответ:" << endl;
+		 cout << f4 << endl;
+	 }
+    } 
+	return 0;
+}
